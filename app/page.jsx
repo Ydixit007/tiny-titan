@@ -1,7 +1,12 @@
-import Image from 'next/image'
+"use client";
+import { appServices, sampleData } from "@/services/services";
+import Image from "next/image";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <main></main>
-  )
+  useEffect(() => {
+    
+  }, []);
+
+  return <main></main>;
 }
