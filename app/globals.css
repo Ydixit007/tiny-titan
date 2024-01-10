@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  height: 100svh;
+}
+
+main {
+  height: 100svh;
+}

@@ -49,3 +49,7 @@ export const appServices = () => {
     shareDataAsScreenshot: () => {},
   };
 };
+
+const arr = [{ id: 1, boardName: "Hello", todos: [] },{ id: 1, boardName: "Yash", todos: [] }];
+
+appServices().saveDataTOLocal(arr);
