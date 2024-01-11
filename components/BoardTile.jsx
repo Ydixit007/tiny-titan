@@ -9,7 +9,7 @@ export default function BoardTile({ title, className, to }) {
   return (
     <Link
       href={to}
-      className={`w-full h-[44px] flex-shrink-0 rounded-xl bg-grey text-center border-2 border-grey flex justify-center items-center text-lg font-semibold text-lightGrey cursor-pointer ${className} duration-200  hover:bg-greyDarK ${
+      className={`w-full h-[38px] flex-shrink-0 rounded-lg bg-grey text-center border-2 border-grey flex justify-center items-center text-md font-semibold text-lightGrey cursor-pointer ${className} duration-200  hover:bg-greyDarK ${
         isActive ? "border-lighterGrey" : "border-grey"
       }`}
     >

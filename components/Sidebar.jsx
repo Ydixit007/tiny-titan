@@ -36,7 +36,7 @@ export default function Sidebar({}) {
         initial={{ width: "48px", opacity: 0 }}
         animate={{ width: sidebarOpen ? "256px" : "48px", opacity: 1 }}
         transition={{ duration: 0.2 }}
-        className="h-[90%] bg-primaryDark rounded-2xl m-6 p-3 flex-shrink-0"
+        className="h-[90%] bg-primaryDark rounded-2xl m-6 p-3 flex-shrink-0 z-50"
       >
         {sidebarOpen && (
           <motion.div
@@ -86,7 +86,7 @@ export default function Sidebar({}) {
             exit={{ opacity: 0 }}
             transition={{ delay: 0.2 }}
             onClick={toggle}
-            className="sidebar-closed cursor-pointer mt-1"
+            className="sidebar-closed cursor-pointer mt-1 z-50"
           >
             <div className="">
               <Menu size="24" color="#AEAEB2" />

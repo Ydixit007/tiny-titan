@@ -4,6 +4,7 @@
 
 body {
   height: 100svh;
+  overflow: hidden;
 }
 
 main {
@@ -12,6 +13,7 @@ main {
   display: flex;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .add-board{

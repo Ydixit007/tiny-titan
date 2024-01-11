@@ -1,7 +1,7 @@
 "use client";
 import AddBoard from "@/components/AddBoard";
 import { usePathname } from "next/navigation";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function page({ params }) {
   const path = usePathname();
@@ -9,16 +9,20 @@ export default function page({ params }) {
   if (path.startsWith("/add")) {
     return (
       <main>
-        <AnimatePresence key={path}>
-          <AddBoard />
-        </AnimatePresence>
+        <AddBoard />
       </main>
     );
   }
   return (
-    <main>
-      Hi , From {params.boardName}
-      <button onClick={() => {}}> Go back</button>
-    </main>
+    <AnimatePresence>
+      <motion.main
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -50 }}
+        transition={{delay: 0.1}}
+      >
+        Hi , From {params.boardName}
+      </motion.main>
+    </AnimatePresence>
   );
 }
