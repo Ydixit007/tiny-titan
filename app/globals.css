@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  height: 100svh;
+}
+
+main {
+  height: 100svh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.add-board{
+  background-color: rgb(36, 36, 38, 0.2);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #242426;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #48484A;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3c;
+}
