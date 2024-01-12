@@ -1,11 +1,14 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, RefreshLeftSquare } from "iconsax-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Pomodoro() {
-  const [seconds, setSeconds] = useState(1500); // 25 minutes in seconds
+  const initialSeconds = 10;
+  const [seconds, setSeconds] = useState(initialSeconds); // 25 minutes in seconds
   const [isActive, setIsActive] = useState(false);
+  const startAudioRef = useRef(null);
+  const stopAudioRef = useRef(null);
 
   useEffect(() => {
     let interval;
@@ -22,8 +25,17 @@ export default function Pomodoro() {
     return () => clearInterval(interval);
   }, [isActive]);
 
+  useEffect(() => {
+    if (seconds <= 0) {
+      resetTimer();
+    }
+  }, [seconds]);
+
   const startTimer = () => {
-    setIsActive(true);
+    playAudio();
+    setTimeout(() => {
+      setIsActive(true);
+    }, 50);
   };
 
   const stopTimer = () => {
@@ -31,8 +43,15 @@ export default function Pomodoro() {
   };
 
   const resetTimer = () => {
-    setIsActive(false);
-    setSeconds(1500);
+    if (isActive) {
+      if (stopAudioRef.current) {
+        stopAudioRef.current.play();
+      }
+      setTimeout(() => {
+        setIsActive(false);
+        setSeconds(initialSeconds);
+      }, 50);
+    }
   };
 
   const formatTime = (timeInSeconds) => {
@@ -44,18 +63,27 @@ export default function Pomodoro() {
     )}`;
   };
 
+  const playAudio = () => {
+    if (startAudioRef.current) {
+      startAudioRef.current.play();
+    }
+  };
+
   return (
     <AnimatePresence>
       <div className="pomo bg-grey h-40 rounded-lg flex items-center px-2 py-2 flex-col">
         <div className="time text-3xl font-semibold text-lightGrey mt-3 border-b-2 pb-3 w-full text-center border-grey2">
           <AnimatePresence mode="wait">
             <motion.p
-            className="text-lightGrey"
+              className="text-lightGrey"
               key={seconds} // Add a unique key to ensure smooth transitions
               style={{ fontSize: "2rem", fontWeight: "bold" }}
               initial={{ y: 5 }}
-              animate={{ y: 0 , transition: {ease: "easeInOut"}}}
-              exit={{ y: -10, opacity: 0.1 }}
+              animate={{
+                y: 0,
+                transition: { ease: "easeInOut", bounce: 0.25 },
+              }}
+              exit={{ y: -5, opacity: 0.1 }}
               transition={{ duration: 0.2 }}
             >
               {formatTime(seconds)}
@@ -80,6 +108,14 @@ export default function Pomodoro() {
             />
           </div>
         </div>
+        <audio ref={startAudioRef}>
+          <source src="/sounds/start.mp3" type="audio/mp3" />
+        </audio>
+        <audio
+          ref={stopAudioRef}
+          src="/sounds/end.mp3"
+          type="audio/mp3"
+        ></audio>
       </div>
     </AnimatePresence>
   );
