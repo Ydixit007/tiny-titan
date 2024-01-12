@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={
-          inter.className && "bg-primary flex items-center text-color2"
+          inter.className && "bg-primary flex items-center text-lighterGrey"
         }
       >
         <Sidebar />

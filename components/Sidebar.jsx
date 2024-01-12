@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { appServices } from "@/actions/actions";
 import { usePathname, useRouter } from "next/navigation";
+import Pomodoro from "./Pomodoro";
 
 export default function Sidebar({}) {
   const [sidebarOpen, setsidebarOpen] = useState(true);
@@ -77,6 +78,7 @@ export default function Sidebar({}) {
             </div>
             <BoardTile className={"mt-3 pr-2"} title={"+"} to={"add"} />
             <h1 className="my-2 text-lg text-lightGrey">Pomodoro</h1>
+            <Pomodoro />
           </motion.div>
         )}
         {!sidebarOpen && (
