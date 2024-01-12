@@ -9,6 +9,7 @@ export default function Pomodoro() {
   const [isActive, setIsActive] = useState(false);
   const startAudioRef = useRef(null);
   const stopAudioRef = useRef(null);
+  const tickAudioRef = useRef(null);
 
   useEffect(() => {
     let interval;
@@ -26,6 +27,9 @@ export default function Pomodoro() {
   }, [isActive]);
 
   useEffect(() => {
+    if(seconds === 5 || seconds === 4 || seconds === 3 || seconds === 2 || seconds === 1 ){
+        playAudio(tickAudioRef);
+    }
     if (seconds <= 0) {
       resetTimer();
     }
@@ -113,6 +117,11 @@ export default function Pomodoro() {
         <audio
           ref={stopAudioRef}
           src="/sounds/end.mp3"
+          type="audio/mp3"
+        ></audio>
+        <audio
+          ref={tickAudioRef}
+          src="/sounds/tick.mp3"
           type="audio/mp3"
         ></audio>
       </div>
