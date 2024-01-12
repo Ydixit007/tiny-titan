@@ -32,7 +32,7 @@ export default function Pomodoro() {
   }, [seconds]);
 
   const startTimer = () => {
-    playAudio();
+    playAudio(startAudioRef);
     setTimeout(() => {
       setIsActive(true);
     }, 50);
@@ -44,9 +44,7 @@ export default function Pomodoro() {
 
   const resetTimer = () => {
     if (isActive) {
-      if (stopAudioRef.current) {
-        stopAudioRef.current.play();
-      }
+      playAudio(stopAudioRef);
       setTimeout(() => {
         setIsActive(false);
         setSeconds(initialSeconds);
@@ -63,9 +61,10 @@ export default function Pomodoro() {
     )}`;
   };
 
-  const playAudio = () => {
-    if (startAudioRef.current) {
-      startAudioRef.current.play();
+  const playAudio = (audioRef) => {
+    if (audioRef.current) {
+      audioRef.current.volume = 30 / 100;
+      audioRef.current.play();
     }
   };
 
