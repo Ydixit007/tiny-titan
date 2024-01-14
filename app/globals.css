@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color1: #0A84FF;
+  --color2: #BF5AF2;
+  --color3: #FF9F0B;
+  --color4: #30D158;
+  --color5: #FF375F;
+  --color6: #AC8E68;
+}
+
 body {
   height: 100svh;
   overflow: hidden;
@@ -16,7 +25,7 @@ main {
   overflow: hidden;
 }
 
-.add-board{
+.add-board {
   background-color: rgb(36, 36, 38, 0.2);
 }
 
@@ -38,4 +47,30 @@ main {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #3a3a3c;
+}
+
+.todocard:nth-child(1) {
+  border-style: solid;
+  border-color: var(--color1) !important;
+}
+
+.todocard:nth-child(2) {
+  border-style: solid;
+  border-color: var(--color2) !important;
+}
+.todocard:nth-child(3) {
+  border-style: solid;
+  border-color: var(--color3) !important;
+}
+.todocard:nth-child(4) {
+  border-style: solid;
+  border-color: var(--color4) !important;
+}
+.todocard:nth-child(5) {
+  border-style: solid;
+  border-color: var(--color5) !important;
+}
+.todocard:nth-child(6) {
+  border-style: solid;
+  border-color: var(--color6) !important;
 }

@@ -39,7 +39,7 @@ export default function Pomodoro() {
     playAudio(startAudioRef);
     setTimeout(() => {
       setIsActive(true);
-    }, 50);
+    }, 200);
   };
 
   const stopTimer = () => {
