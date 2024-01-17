@@ -15,7 +15,10 @@ export const appServices = () => {
     },
     addBoard: (title) => {
       boardsData = appServices().readDataFromLocal() || [];
-      if (title !== "" && !boardsData.some(board => board.boardName == title)) {
+      if (
+        title !== "" &&
+        !boardsData.some((board) => board.boardName == title)
+      ) {
         boardsData.push({
           id: boardsData.length + 1,
           boardName: title,
@@ -24,6 +27,14 @@ export const appServices = () => {
         appServices().saveDataTOLocal(boardsData);
       }
       return appServices().readDataFromLocal();
+    },
+    addTodo: (toDoTitle, toDoDescription) => {
+      const data = appServices().readDataFromLocal() || [];
+      // if (toDoTitle !== "" && toDoDescription !== "") {
+      //   if(data.toDos.)
+      // }
+
+      console.log(exists);
     },
   };
 };

@@ -36,6 +36,7 @@ export default function page({ params }) {
           <h3 className="text-md font-semibold text-lighterGrey">
             {params.boardName}
           </h3>
+          
           <Share className="text-grey2 cursor-pointer" size="24" variant="Bold" />
         </div>
         <div className="cards-container flex flex-wrap gap-4">
@@ -46,7 +47,6 @@ export default function page({ params }) {
           <TodoCard isAdd={true}/>
           <TodoCard isAdd={true}/>
           <TodoCard isAdd={true}/>
-
         </div>
       </motion.main>
     </AnimatePresence>

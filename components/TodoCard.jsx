@@ -1,7 +1,12 @@
+import { appServices } from "@/actions/actions";
+
 export default function TodoCard({ title, description, isCompleted, isAdd }) {
+  const addToDo = () =>{
+    appServices().addTodo("first", "hello")
+  }
   if (isAdd) {
     return (
-      <div onClick={()=>{}} className="todocard flex justify-center items-center flex-col h-44 w-44 bg-grey rounded-xl cursor-pointer border-4">
+      <div onClick={addToDo} className="todocard flex justify-center items-center flex-col h-44 w-44 bg-grey rounded-xl cursor-pointer border-4">
         <h1 className="text-4xl text-lightGrey cursor-pointer font-bold">+</h1>
       </div>
     );
