@@ -4,9 +4,12 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Share } from "iconsax-react";
 import TodoCard from "@/components/TodoCard";
+import { useEffect, useState } from "react";
+import { appServices } from "@/actions/actions";
 
 export default function page({ params }) {
   const path = usePathname();
+  const [ToDos, setToDos] = useState([]);
 
   if (path.startsWith("/add")) {
     return (
@@ -15,6 +18,14 @@ export default function page({ params }) {
       </main>
     );
   }
+
+  useEffect(() => {
+    const data = appServices().readDataFromLocal();
+    if(data){
+      console.log(data.filter);
+    }
+  }, [])
+  
   return (
     <AnimatePresence>
       <motion.main
@@ -40,13 +51,7 @@ export default function page({ params }) {
           <Share className="text-grey2 cursor-pointer" size="24" variant="Bold" />
         </div>
         <div className="cards-container flex flex-wrap gap-4">
-          <TodoCard isAdd={true}/>
-          <TodoCard isAdd={true}/>
-          <TodoCard isAdd={true}/>
-          <TodoCard isAdd={true}/>
-          <TodoCard isAdd={true}/>
-          <TodoCard isAdd={true}/>
-          <TodoCard isAdd={true}/>
+          {}
         </div>
       </motion.main>
     </AnimatePresence>

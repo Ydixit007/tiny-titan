@@ -28,13 +28,17 @@ export const appServices = () => {
       }
       return appServices().readDataFromLocal();
     },
-    addTodo: (toDoTitle, toDoDescription) => {
+    addTodo: (toDoTitle, toDoDescription, boardIndex) => {
       const data = appServices().readDataFromLocal() || [];
-      // if (toDoTitle !== "" && toDoDescription !== "") {
-      //   if(data.toDos.)
-      // }
-
-      console.log(exists);
-    },
+        if (toDoTitle !== "") {
+          const todo = {
+            toDoTitle: toDoTitle || "",
+            toDoDescription: toDoDescription || "",
+            isCompleted: false,
+          };
+          data[boardIndex].toDos.push(todo);
+          appServices().saveDataTOLocal(data);
+        }
+      }
   };
 };
