@@ -9,7 +9,7 @@ import { appServices } from "@/actions/actions";
 
 export default function page({ params }) {
   const path = usePathname();
-  const [ToDos, setToDos] = useState([]);
+  const [todos, setToDos] = useState([]);
 
   if (path.startsWith("/add")) {
     return (
@@ -21,11 +21,18 @@ export default function page({ params }) {
 
   useEffect(() => {
     const data = appServices().readDataFromLocal();
-    if(data){
-      console.log(data.filter);
+    if (data) {
+      const currentBoard = data.filter((board) => {
+        return board.boardName === params.boardName;
+      });
+      setToDos(currentBoard[0].toDos);
     }
-  }, [])
-  
+  }, []);
+
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
   return (
     <AnimatePresence>
       <motion.main
@@ -47,11 +54,31 @@ export default function page({ params }) {
           <h3 className="text-md font-semibold text-lighterGrey">
             {params.boardName}
           </h3>
-          
-          <Share className="text-grey2 cursor-pointer" size="24" variant="Bold" />
+
+          <Share
+            className="text-grey2 cursor-pointer"
+            size="24"
+            variant="Bold"
+          />
         </div>
         <div className="cards-container flex flex-wrap gap-4">
-          {}
+          {todos && todos.map((todo) => {
+            return (
+              <TodoCard
+                key={todo.toDoTitle}
+                title={todo.toDoTitle}
+                description={todo.toDoDescription}
+                isCompleted={todo.isCompleted}
+                isAdd={false}
+              />
+            );
+          })}
+          <TodoCard
+            title={"hello"}
+            description={"Heyy"}
+            boardIndex={0}
+            isAdd={true}
+          />
         </div>
       </motion.main>
     </AnimatePresence>
