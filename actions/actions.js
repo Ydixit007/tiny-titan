@@ -28,7 +28,7 @@ export const appServices = () => {
       }
       return appServices().readDataFromLocal();
     },
-    addTodo: (toDoTitle, toDoDescription, boardIndex) => {
+    addTodo: (toDoTitle, toDoDescription, boardIndex, newState) => {
       const data = appServices().readDataFromLocal() || [];
         if (toDoTitle !== "") {
           const todo = {
@@ -37,6 +37,7 @@ export const appServices = () => {
             isCompleted: false,
           };
           data[boardIndex].toDos.push(todo);
+          newState(data);
           appServices().saveDataTOLocal(data);
         }
       }

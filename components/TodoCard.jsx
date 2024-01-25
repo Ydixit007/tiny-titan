@@ -1,31 +1,28 @@
-import { appServices } from "@/actions/actions";
+import Link from "next/link";
 
 export default function TodoCard({
   title,
   description,
   isCompleted,
+  updateState,
   isAdd,
   boardIndex,
+  boardName,
 }) {
-  const addToDo = (title, description, boardIndex) => {
-    appServices().addTodo(title, description, boardIndex);
-  };
   if (isAdd) {
     return (
-      <div
-        onClick={() => {
-          addToDo(title, description, boardIndex);
-        }}
-        className="todocard flex justify-center items-center flex-col h-44 w-44 bg-grey rounded-xl cursor-pointer border-4"
+      <Link
+        className="todocard flex justify-center items-center flex-col h-44 w-44 bg-grey rounded-xl cursor-pointer border-4 text-5xl font-semibold"
+        href={{ pathname: "/addTodo", query: { boardIndex: boardIndex, boardName: boardName } }}
       >
-        <h1 className="text-4xl text-lightGrey cursor-pointer font-bold">+</h1>
-      </div>
+        +
+      </Link>
     );
   }
   return (
-    <div className="todocard flex justify-center items-center flex-col h-44 w-44 bg-grey rounded-xl cursor-pointer border-4">
-      <h1>{title}</h1>
-      <h1>{description}</h1>
+    <div className="todocard flex items-center flex-col h-44 w-44 bg-grey rounded-xl cursor-pointer border-4 p-2">
+      <h1 className="font-semibold text-2xl mb-2">{title}</h1>
+      <p className="text-lightGrey text-lg">{description}</p>
     </div>
   );
 }

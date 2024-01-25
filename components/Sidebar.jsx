@@ -76,7 +76,7 @@ export default function Sidebar({}) {
                 );
               })}
             </div>
-            <BoardTile className={"mt-3 pr-2"} title={"+"} to={"add"} />
+            <BoardTile className={"mt-3 pr-2"} title={"+"} to={"addBoard"} />
             <h1 className="my-2 text-lg text-lightGrey">Pomodoro</h1>
             <Pomodoro />
           </motion.div>

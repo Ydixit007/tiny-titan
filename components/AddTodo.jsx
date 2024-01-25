@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import AddBoardModal from "./AddBoardModal";
+import AddTodoModal from "./AddTodoModal";
 
-export default function AddBoard() {
+export default function AddTodo() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -9,7 +9,7 @@ export default function AddBoard() {
       exit={{ opacity: 0 }}
       className="add-board h-screen w-full flex fixed top-0 left-0 justify-center items-center backdrop-blur-sm "
     >
-    <AddBoardModal />
+    <AddTodoModal />
     </motion.div>
   );
 }

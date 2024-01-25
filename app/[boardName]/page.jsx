@@ -1,20 +1,30 @@
 "use client";
 import AddBoard from "@/components/AddBoard";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Share } from "iconsax-react";
 import TodoCard from "@/components/TodoCard";
 import { useEffect, useState } from "react";
 import { appServices } from "@/actions/actions";
+import AddTodo from "@/components/AddTodo";
 
 export default function page({ params }) {
   const path = usePathname();
+  // const router = useRouter();
   const [todos, setToDos] = useState([]);
 
-  if (path.startsWith("/add")) {
+  if (path.startsWith("/addBoard")) {
     return (
       <main>
         <AddBoard />
+      </main>
+    );
+  }
+
+  if (path.startsWith("/addTodo")) {
+    return (
+      <main>
+        <AddTodo />
       </main>
     );
   }
@@ -28,10 +38,6 @@ export default function page({ params }) {
       setToDos(currentBoard[0].toDos);
     }
   }, []);
-
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
 
   return (
     <AnimatePresence>
@@ -56,7 +62,7 @@ export default function page({ params }) {
           </h3>
 
           <Share
-            className="text-grey2 cursor-pointer"
+            className="text-grey2 cursor-pointer hidden"
             size="24"
             variant="Bold"
           />
@@ -74,9 +80,11 @@ export default function page({ params }) {
             );
           })}
           <TodoCard
-            title={"hello"}
+            title={"new Todo"}
             description={"Heyy"}
+            updateState={setToDos}
             boardIndex={0}
+            boardName={params.boardName}
             isAdd={true}
           />
         </div>
