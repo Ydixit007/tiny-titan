@@ -28,18 +28,24 @@ export const appServices = () => {
       }
       return appServices().readDataFromLocal();
     },
-    addTodo: (toDoTitle, toDoDescription, boardIndex, newState) => {
+    addTodo: (toDoTitle, toDoDescription, boardIndex) => {
       const data = appServices().readDataFromLocal() || [];
-        if (toDoTitle !== "") {
-          const todo = {
-            toDoTitle: toDoTitle || "",
-            toDoDescription: toDoDescription || "",
-            isCompleted: false,
-          };
-          data[boardIndex].toDos.push(todo);
-          newState(data);
-          appServices().saveDataTOLocal(data);
-        }
+      if (toDoTitle !== "") {
+        const todo = {
+          toDoTitle: toDoTitle || "",
+          toDoDescription: toDoDescription || "",
+          isCompleted: false,
+        };
+        data[boardIndex].toDos.push(todo);
+        appServices().saveDataTOLocal(data);
       }
+    },
+    markTodo: (boardIndex , toDoIndex, isCompleted, updateState)=>{
+      const data = appServices().readDataFromLocal();
+      data[boardIndex].toDos[toDoIndex].isCompleted = isCompleted;
+      appServices().saveDataTOLocal(data);
+      updateState();
+    }
   };
+
 };

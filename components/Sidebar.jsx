@@ -66,10 +66,11 @@ export default function Sidebar({}) {
               />
             </div>
             <div className="boards flex flex-col gap-3 h-[40%] max-h-[40%] overflow-y-scroll pr-1">
-              {boards.map((board) => {
+              {boards.map((board, index) => {
                 return (
                   <BoardTile
                     key={board.id}
+                    BoardId={index}
                     to={board.boardName}
                     title={board.boardName}
                   />

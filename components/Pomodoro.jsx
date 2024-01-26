@@ -4,7 +4,7 @@ import { Play, RefreshLeftSquare } from "iconsax-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function Pomodoro() {
-  const initialSeconds = 10;
+  const initialSeconds = 1200;
   const [seconds, setSeconds] = useState(initialSeconds); // 25 minutes in seconds
   const [isActive, setIsActive] = useState(false);
   const startAudioRef = useRef(null);

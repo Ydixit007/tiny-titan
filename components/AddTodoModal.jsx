@@ -1,4 +1,5 @@
 "use client";
+import { appServices } from "@/actions/actions";
 import { ArrowSquareLeft } from "iconsax-react";
 import { useRouter, useSearchParams} from "next/navigation";
 import { useState } from "react";
@@ -10,8 +11,17 @@ export default function AddTodoModal() {
   const searchParams = useSearchParams();
 
   const goBack = () => {
-    router.push(`/${searchParams.get("boardName")}`);
+    const query = `boardIndex=${searchParams.get("boardIndex")}`
+    router.push(`/${searchParams.get("boardName")}?${query}`);
   };
+
+  const saveTodo = () =>{
+    const query = `boardIndex=${searchParams.get("boardIndex")}` 
+    if(title !== ""){
+      appServices().addTodo(title, Description, searchParams.get("boardIndex"));
+      router.push(`/${searchParams.get("boardName")}?${query}`)
+    }
+  }
 
   return (
     <div className="card flex flex-col w-[30%] gap-4 px-8 py-4 rounded-xl text-lightGrey bg-primary border-2 border-grey2">
@@ -42,7 +52,7 @@ export default function AddTodoModal() {
       />
       <button
         className="bg-lightGrey rounded-md text-primaryDark font-semibold py-1 flex-grow-0"
-        onClick={() => {}}
+        onClick={saveTodo}
       >
         Add
       </button>

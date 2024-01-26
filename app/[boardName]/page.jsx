@@ -1,6 +1,6 @@
 "use client";
 import AddBoard from "@/components/AddBoard";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Share } from "iconsax-react";
 import TodoCard from "@/components/TodoCard";
@@ -10,7 +10,7 @@ import AddTodo from "@/components/AddTodo";
 
 export default function page({ params }) {
   const path = usePathname();
-  // const router = useRouter();
+  const searchParams = useSearchParams();
   const [todos, setToDos] = useState([]);
 
   if (path.startsWith("/addBoard")) {
@@ -30,14 +30,20 @@ export default function page({ params }) {
   }
 
   useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
     const data = appServices().readDataFromLocal();
     if (data) {
       const currentBoard = data.filter((board) => {
         return board.boardName === params.boardName;
       });
-      setToDos(currentBoard[0].toDos);
+      if (currentBoard) {
+        setToDos(currentBoard[0].toDos || []);
+      }
     }
-  }, []);
+  };
 
   return (
     <AnimatePresence>
@@ -68,22 +74,24 @@ export default function page({ params }) {
           />
         </div>
         <div className="cards-container flex flex-wrap gap-4">
-          {todos && todos.map((todo) => {
-            return (
-              <TodoCard
-                key={todo.toDoTitle}
-                title={todo.toDoTitle}
-                description={todo.toDoDescription}
-                isCompleted={todo.isCompleted}
-                isAdd={false}
-              />
-            );
-          })}
+          {todos &&
+            todos.map((todo, index) => {
+              return (
+                <TodoCard
+                  key={todo.toDoTitle}
+                  index={index}
+                  title={todo.toDoTitle}
+                  description={todo.toDoDescription}
+                  isCompleted={todo.isCompleted}
+                  isAdd={false}
+                  updateState={getData}
+                  boardIndex={searchParams.get("boardIndex") || 0}
+                />
+              );
+            })}
           <TodoCard
-            title={"new Todo"}
-            description={"Heyy"}
             updateState={setToDos}
-            boardIndex={0}
+            boardIndex={searchParams.get("boardIndex") || 0}
             boardName={params.boardName}
             isAdd={true}
           />
