@@ -14,10 +14,10 @@ export default function AddBoardModal() {
 
   const saveBoard = () => {
     if (title !== "") {
-      appServices().addBoard(title);
+      appServices().addBoard(title.replaceAll(" ", "-"));
       const index = appServices().readDataFromLocal().length - 1;
       const query = `boardIndex=${index}`
-      router.push(`/${title}?${query}`);
+      router.push(`/${title.replaceAll(" ", "-")}?${query}`);
     }
   };
 

@@ -39,8 +39,8 @@ export default function page({ params }) {
       const currentBoard = data.filter((board) => {
         return board.boardName === params.boardName;
       });
-      if (currentBoard) {
-        setToDos(currentBoard[0].toDos || []);
+      if (currentBoard.length >= 1) {
+        setToDos(currentBoard[0].toDos);
       }
     }
   };
@@ -64,7 +64,7 @@ export default function page({ params }) {
         </div>
         <div className="board-Name text-xl my-6 flex justify-between w-full items-center">
           <h3 className="text-md font-semibold text-lighterGrey">
-            {params.boardName}
+            {params.boardName.toString()}
           </h3>
 
           <Share
@@ -78,7 +78,7 @@ export default function page({ params }) {
             todos.map((todo, index) => {
               return (
                 <TodoCard
-                  key={todo.toDoTitle}
+                  key={index}
                   index={index}
                   title={todo.toDoTitle}
                   description={todo.toDoDescription}
