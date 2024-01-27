@@ -26,10 +26,15 @@ export default function Sidebar({}) {
     setsidebarOpen((prev) => !prev);
   };
 
-  const deleteAll = () =>{
+  const deleteAll = () => {
     appServices().deleteDataFromLocal();
     router.push("/");
-  }
+  };
+
+  const deleteBoard = (boardIndex) => {
+    appServices().deleteBoard(boardIndex, getData);
+    router.push("/");
+  };
 
   return (
     <AnimatePresence>
@@ -70,6 +75,7 @@ export default function Sidebar({}) {
                 return (
                   <BoardTile
                     key={board.id}
+                    deleteBoard={deleteBoard}
                     BoardId={index}
                     to={board.boardName}
                     title={board.boardName}

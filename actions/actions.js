@@ -2,7 +2,6 @@
 
 "use client";
 export const appServices = () => {
-  let boardsData = [];
   return {
     readDataFromLocal: () => {
       return JSON.parse(localStorage.getItem("tinyTitanData"));
@@ -14,7 +13,7 @@ export const appServices = () => {
       localStorage.removeItem("tinyTitanData");
     },
     addBoard: (title) => {
-      boardsData = appServices().readDataFromLocal() || [];
+      const boardsData = appServices().readDataFromLocal() || [];
       if (
         title !== "" &&
         !boardsData.some((board) => board.boardName == title)
@@ -28,6 +27,12 @@ export const appServices = () => {
       }
       return appServices().readDataFromLocal();
     },
+    deleteBoard: (boardIndex, updateState) => {
+      const data = appServices().readDataFromLocal() || [];
+      data.splice(boardIndex, 1);
+      appServices().saveDataTOLocal(data);
+      updateState();
+    },
     addTodo: (toDoTitle, toDoDescription, boardIndex) => {
       const data = appServices().readDataFromLocal() || [];
       if (toDoTitle !== "") {
@@ -40,12 +45,11 @@ export const appServices = () => {
         appServices().saveDataTOLocal(data);
       }
     },
-    markTodo: (boardIndex , toDoIndex, isCompleted, updateState)=>{
+    markTodo: (boardIndex, toDoIndex, isCompleted, updateState) => {
       const data = appServices().readDataFromLocal();
       data[boardIndex].toDos[toDoIndex].isCompleted = isCompleted;
       appServices().saveDataTOLocal(data);
       updateState();
-    }
+    },
   };
-
 };

@@ -74,3 +74,10 @@ main {
   border-style: solid;
   border-color: var(--color6) !important;
 }
+
+/* Board Tile */
+
+.boardTile:hover .deleteBoard{
+  transition: 200ms;
+  display: block;
+}
