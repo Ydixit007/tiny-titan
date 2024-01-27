@@ -33,7 +33,9 @@ export default function Sidebar({}) {
 
   const deleteBoard = (boardIndex) => {
     appServices().deleteBoard(boardIndex, getData);
-    router.push("/");
+    setTimeout(() => {
+      router.push("/");
+    }, 0);
   };
 
   return (

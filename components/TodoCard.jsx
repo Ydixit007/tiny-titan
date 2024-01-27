@@ -11,6 +11,7 @@ export default function TodoCard({
   boardIndex,
   boardName,
 }) {
+  
   if (isAdd) {
     return (
       <Link
