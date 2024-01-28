@@ -75,6 +75,32 @@ main {
   border-color: var(--color6) !important;
 }
 
+.todocard:nth-child(12) {
+  border-style: solid;
+  border-color: var(--color1) !important;
+}
+
+.todocard:nth-child(11) {
+  border-style: solid;
+  border-color: var(--color2) !important;
+}
+.todocard:nth-child(10) {
+  border-style: solid;
+  border-color: var(--color3) !important;
+}
+.todocard:nth-child(9) {
+  border-style: solid;
+  border-color: var(--color4) !important;
+}
+.todocard:nth-child(8) {
+  border-style: solid;
+  border-color: var(--color5) !important;
+}
+.todocard:nth-child(7) {
+  border-style: solid;
+  border-color: var(--color6) !important;
+}
+
 /* Board Tile */
 
 .boardTile:hover .deleteBoard{

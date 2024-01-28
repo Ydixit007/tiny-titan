@@ -29,9 +29,13 @@ export default function TodoCard({
   const markTodo = () => {
     appServices().markTodo(boardIndex, index, !isCompleted, updateState);
   };
+
+  const deleteTodo = () =>{
+    appServices().deleteTodo(boardIndex, index , updateState);
+  }
   return (
     <div
-      className={`todocard relative flex items-center flex-col h-44 w-44 bg-grey rounded-xl cursor-pointer ${
+      className={`todocard relative flex items-center flex-col h-44 w-44 bg-grey rounded-xl ${
         isCompleted ? "border-0" : "border-4"
       } p-2 overflow-hidden pb-10`}
     >
@@ -42,21 +46,19 @@ export default function TodoCard({
         <MinusSquare
           onClick={markTodo}
           size="20"
-          className="text-lightGrey absolute right-9 bottom-2 opacity-100"
+          className="text-lightGrey absolute right-9 bottom-2 cursor-pointer"
         />
       ) : (
         <TickSquare
           onClick={markTodo}
           size="20"
-          className="text-lightGrey absolute right-9 bottom-2 opacity-100"
+          className="text-lightGrey absolute right-9 bottom-2 cursor-pointer"
         />
       )}
       <Trash
-        onClick={() => {
-          console.log("del");
-        }}
+        onClick={deleteTodo}
         size={20}
-        className="text-lightGrey absolute right-2 bottom-2 opacity-100  hover:opacity-100"
+        className="text-lightGrey absolute right-2 bottom-2 cursor-pointer"
       />
     </div>
   );

@@ -45,6 +45,13 @@ export const appServices = () => {
         appServices().saveDataTOLocal(data);
       }
     },
+    deleteTodo: (boardIndex, toDoIndex, updateState) => {
+      const data = appServices().readDataFromLocal() || [];
+      const todos = data[boardIndex].toDos || []
+      todos.splice(toDoIndex, 1);
+      appServices().saveDataTOLocal(data);
+      updateState();
+    },
     markTodo: (boardIndex, toDoIndex, isCompleted, updateState) => {
       const data = appServices().readDataFromLocal();
       data[boardIndex].toDos[toDoIndex].isCompleted = isCompleted;

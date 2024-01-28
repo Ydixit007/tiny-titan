@@ -34,13 +34,15 @@ export default function page({ params }) {
   }, []);
 
   const getData = () => {
-    const data = appServices().readDataFromLocal();
+    const data = appServices().readDataFromLocal() || [];
     if (data) {
       const currentBoard = data.filter((board) => {
         return board.boardName === params.boardName;
       });
       if (currentBoard.length >= 1) {
-        setToDos(currentBoard[0].toDos);
+        const tasks = currentBoard[0].toDos || [];
+        // const sortedTasks = tasks.sort((a, b) => (a.isCompleted - b.isCompleted));
+        setToDos(tasks);
       }
     }
   };
@@ -73,7 +75,7 @@ export default function page({ params }) {
             variant="Bold"
           />
         </div>
-        <div className="cards-container flex flex-wrap gap-4">
+        <div className="cards-container flex flex-wrap gap-4 overflow-y-auto max-sm:justify-center">
           {todos &&
             todos.map((todo, index) => {
               return (
