@@ -1,6 +1,6 @@
 "use client";
 import AddBoard from "@/components/AddBoard";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Share } from "iconsax-react";
 import TodoCard from "@/components/TodoCard";
