@@ -33,6 +33,13 @@ export const appServices = () => {
       appServices().saveDataTOLocal(data);
       updateState();
     },
+    editBoard: (boardIndex, title) => {
+      if (title !== "") {
+        const data = appServices().readDataFromLocal() || [];
+        data[boardIndex].boardName == title;
+        appServices().saveDataTOLocal(data);
+      }
+    },
     addTodo: (toDoTitle, toDoDescription, boardIndex) => {
       const data = appServices().readDataFromLocal() || [];
       if (toDoTitle !== "") {
@@ -47,7 +54,7 @@ export const appServices = () => {
     },
     deleteTodo: (boardIndex, toDoIndex, updateState) => {
       const data = appServices().readDataFromLocal() || [];
-      const todos = data[boardIndex].toDos || []
+      const todos = data[boardIndex].toDos || [];
       todos.splice(toDoIndex, 1);
       appServices().saveDataTOLocal(data);
       updateState();

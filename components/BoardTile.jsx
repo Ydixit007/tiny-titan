@@ -1,5 +1,5 @@
 "use client";
-import { Trash } from "iconsax-react";
+import { Edit, Trash } from "iconsax-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -34,8 +34,20 @@ export default function BoardTile({
       }`}
     >
       {title}
+      <span className="deleteBoard text-lightGrey absolute right-8 hidden">
+        <Link
+          href={{
+            pathname: `/`,
+            query: { boardIndex: BoardId, boardName: title },
+          }}
+        >
+          <Edit size="18" />
+        </Link>
+      </span>
       <span
-        onClick={()=>{deleteBoard(BoardId)}}
+        onClick={() => {
+          deleteBoard(BoardId);
+        }}
         className="deleteBoard text-lightGrey absolute right-2 hidden"
       >
         <Trash size="18" />

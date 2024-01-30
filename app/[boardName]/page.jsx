@@ -7,6 +7,7 @@ import TodoCard from "@/components/TodoCard";
 import { useEffect, useState } from "react";
 import { appServices } from "@/actions/actions";
 import AddTodo from "@/components/AddTodo";
+import EditBoard from "@/components/EditBoard";
 
 export default function page({ params }) {
   const path = usePathname();
@@ -25,6 +26,14 @@ export default function page({ params }) {
     return (
       <main>
         <AddTodo />
+      </main>
+    );
+  }
+
+  if (path.startsWith("/editBoard")) {
+    return (
+      <main>
+        <EditBoard />
       </main>
     );
   }
