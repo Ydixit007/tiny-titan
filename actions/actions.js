@@ -59,6 +59,14 @@ export const appServices = () => {
       appServices().saveDataTOLocal(data);
       updateState();
     },
+    editTodo: (boardIndex, index, title, description) => {
+      if (title !== "") {
+        const data = appServices().readDataFromLocal() || [];
+        data[boardIndex].toDos[index].toDoTitle = title;
+        data[boardIndex].toDos[index].toDoDescription = description;
+        appServices().saveDataTOLocal(data);
+      }
+    },
     markTodo: (boardIndex, toDoIndex, isCompleted, updateState) => {
       const data = appServices().readDataFromLocal();
       data[boardIndex].toDos[toDoIndex].isCompleted = isCompleted;

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { appServices } from "@/actions/actions";
 import AddTodo from "@/components/AddTodo";
 import EditBoard from "@/components/EditBoard";
+import EditTodo from "@/components/EditTodo";
 
 export default function page({ params }) {
   const path = usePathname();
@@ -34,6 +35,14 @@ export default function page({ params }) {
     return (
       <main>
         <EditBoard />
+      </main>
+    );
+  }
+
+  if (path.startsWith("/editTodo")) {
+    return (
+      <main>
+        <EditTodo />
       </main>
     );
   }
@@ -96,6 +105,7 @@ export default function page({ params }) {
                   isCompleted={todo.isCompleted}
                   isAdd={false}
                   updateState={getData}
+                  boardName={params.boardName}
                   boardIndex={searchParams.get("boardIndex") || 0}
                 />
               );

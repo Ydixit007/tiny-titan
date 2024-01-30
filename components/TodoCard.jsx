@@ -1,5 +1,5 @@
 import { appServices } from "@/actions/actions";
-import { MinusSquare, TickSquare, Trash } from "iconsax-react";
+import { Edit, MinusSquare, TickSquare, Trash } from "iconsax-react";
 import Link from "next/link";
 
 export default function TodoCard({
@@ -30,9 +30,9 @@ export default function TodoCard({
     appServices().markTodo(boardIndex, index, !isCompleted, updateState);
   };
 
-  const deleteTodo = () =>{
-    appServices().deleteTodo(boardIndex, index , updateState);
-  }
+  const deleteTodo = () => {
+    appServices().deleteTodo(boardIndex, index, updateState);
+  };
   return (
     <div
       className={`todocard relative flex items-center flex-col h-44 w-44 bg-grey rounded-xl ${
@@ -46,15 +46,32 @@ export default function TodoCard({
         <MinusSquare
           onClick={markTodo}
           size="20"
-          className="text-lightGrey absolute right-9 bottom-2 cursor-pointer"
+          className="text-lightGrey absolute right-16 bottom-2 cursor-pointer"
         />
       ) : (
         <TickSquare
           onClick={markTodo}
           size="20"
-          className="text-lightGrey absolute right-9 bottom-2 cursor-pointer"
+          className="text-lightGrey absolute right-16 bottom-2 cursor-pointer"
         />
       )}
+      <Link
+        href={{
+          pathname: "/editTodo",
+          query: {
+            boardIndex: boardIndex,
+            index: index,
+            toDoTitle: title,
+            toDoDescription: description,
+            boardName: boardName,
+          },
+        }}
+      >
+        <Edit
+          size={20}
+          className="text-lightGrey absolute right-9 bottom-2 cursor-pointer"
+        />
+      </Link>
       <Trash
         onClick={deleteTodo}
         size={20}
