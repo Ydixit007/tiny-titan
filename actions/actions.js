@@ -36,7 +36,7 @@ export const appServices = () => {
     editBoard: (boardIndex, title) => {
       if (title !== "") {
         const data = appServices().readDataFromLocal() || [];
-        data[boardIndex].boardName == title;
+        data[boardIndex].boardName = title;
         appServices().saveDataTOLocal(data);
       }
     },

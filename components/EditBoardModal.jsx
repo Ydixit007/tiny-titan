@@ -18,8 +18,7 @@ export default function EditBoardModal() {
       const index = searchParams.get("boardIndex") || 0;
       appServices().editBoard(index , title.replaceAll(" ", "-"));
       const query = `boardIndex=${index}`;
-    //   router.push(`/${title.replaceAll(" ", "-")}?${query}`);
-      console.log(appServices().readDataFromLocal())
+      router.push(`/${title.replaceAll(" ", "-")}?${query}`);
     }
   };
 

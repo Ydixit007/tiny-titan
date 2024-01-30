@@ -37,7 +37,7 @@ export default function BoardTile({
       <span className="deleteBoard text-lightGrey absolute right-8 hidden">
         <Link
           href={{
-            pathname: `/`,
+            pathname: `/editBoard`,
             query: { boardIndex: BoardId, boardName: title },
           }}
         >
