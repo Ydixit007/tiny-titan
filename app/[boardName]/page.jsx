@@ -4,16 +4,20 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Share } from "iconsax-react";
 import TodoCard from "@/components/TodoCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { appServices } from "@/actions/actions";
 import AddTodo from "@/components/AddTodo";
 import EditBoard from "@/components/EditBoard";
 import EditTodo from "@/components/EditTodo";
+import html2canvas from "html2canvas";
+import copy from "clipboard-copy";
 
 export default function page({ params }) {
   const path = usePathname();
   const searchParams = useSearchParams();
+  const boardImgRef = useRef(null);
   const [todos, setToDos] = useState([]);
+  const [captureMode, setCaptureMode] = useState(false);
 
   if (path.startsWith("/addBoard")) {
     return (
@@ -65,6 +69,33 @@ export default function page({ params }) {
     }
   };
 
+  const handleConvertAndCopy = async () => {
+    try {
+      const canvas = await html2canvas(boardImgRef.current);
+      canvas.toBlob(async (blob) => {
+        if (blob) {
+          // Copy image blob to clipboard
+          const clipboardData = new ClipboardItem({ "image/png": blob });
+          await navigator.clipboard.write([clipboardData]);
+          alert("Image copied to clipboard!");
+          setCaptureMode(false);
+        } else {
+          console.error("Error creating image blob.");
+          setCaptureMode(false);
+        }
+      }, "image/png");
+    } catch (error) {
+      console.error("Error converting and copying image:", error);
+      setCaptureMode(false);
+    }
+  };
+
+  useEffect(() => {
+    if (captureMode === true) {
+      handleConvertAndCopy();
+    }
+  }, [captureMode]);
+
   return (
     <AnimatePresence>
       <motion.main
@@ -88,7 +119,10 @@ export default function page({ params }) {
           </h3>
 
           <Share
-            className="text-grey2 cursor-pointer hidden"
+            onClick={() => {
+              setCaptureMode(true);
+            }}
+            className="text-grey2 cursor-pointer"
             size="24"
             variant="Bold"
           />
@@ -116,6 +150,37 @@ export default function page({ params }) {
             boardName={params.boardName}
             isAdd={true}
           />
+        </div>
+        <div className="img-container min-w-[25%] opacity-0 overflow-hidden">
+          {captureMode && (
+            <div
+              ref={boardImgRef}
+              className="boardImage bg-greyDarK flex flex-col justify-center items-center px-8 pt-1 pb-4 gap-4"
+            >
+              <h1 className="text-2xl font-semibold text-lighterGrey mb-2">
+                {params.boardName.toString()}
+              </h1>
+              <div className="cards-container flex flex-wrap gap-4 overflow-y-auto justify-center items-center">
+                {todos &&
+                  todos.map((todo, index) => {
+                    return (
+                      <TodoCard
+                        key={index}
+                        index={index}
+                        title={todo.toDoTitle}
+                        description={todo.toDoDescription}
+                        isCompleted={todo.isCompleted}
+                        isAdd={false}
+                        updateState={getData}
+                        boardName={params.boardName}
+                        boardIndex={searchParams.get("boardIndex") || 0}
+                      />
+                    );
+                  })}
+              </div>
+              <p className="text-sm text-lightGrey mb-1">Made with tiny-titan</p>
+            </div>
+          )}
         </div>
       </motion.main>
     </AnimatePresence>
