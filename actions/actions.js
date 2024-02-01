@@ -1,5 +1,4 @@
 // Write actions such that they store and retrive all data from the local storage.
-
 "use client";
 export const appServices = () => {
   return {

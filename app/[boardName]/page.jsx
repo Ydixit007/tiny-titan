@@ -10,7 +10,6 @@ import AddTodo from "@/components/AddTodo";
 import EditBoard from "@/components/EditBoard";
 import EditTodo from "@/components/EditTodo";
 import html2canvas from "html2canvas";
-import copy from "clipboard-copy";
 
 export default function page({ params }) {
   const path = usePathname();
@@ -151,7 +150,7 @@ export default function page({ params }) {
             isAdd={true}
           />
         </div>
-        <div className="img-container min-w-[25%] opacity-0 overflow-hidden">
+        <div className="img-container min-w-[25%] opacity-0">
           {captureMode && (
             <div
               ref={boardImgRef}
@@ -178,7 +177,7 @@ export default function page({ params }) {
                     );
                   })}
               </div>
-              <p className="text-sm text-lightGrey mb-1">Made with tiny-titan</p>
+              <p className="text-sm text-lightGrey mb-1">Made with tiny-titan.vercel.app</p>
             </div>
           )}
         </div>
