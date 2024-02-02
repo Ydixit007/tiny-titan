@@ -126,7 +126,7 @@ export default function page({ params }) {
             variant="Bold"
           />
         </div>
-        <div className="cards-container flex flex-wrap gap-4 overflow-y-auto max-sm:justify-center">
+        <div className="cards-container flex flex-wrap gap-4 overflow-y-auto">
           {todos &&
             todos.map((todo, index) => {
               return (
