@@ -30,7 +30,7 @@ export default function EditTodoModal() {
   }, []);
 
   return (
-    <div className="card flex flex-col w-[30%] gap-4 px-8 py-4 rounded-xl text-lightGrey bg-primary border-2 border-grey2">
+    <div className="card flex flex-col w-[30%] max-md:w-[70%] gap-4 px-8 py-4 rounded-xl text-lightGrey bg-primary border-2 border-grey2">
       <div className="heading flex justify-between">
         <h1 className="text-lg">Edit to-do</h1>
         <ArrowSquareLeft

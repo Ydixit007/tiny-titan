@@ -7,7 +7,7 @@ export default function AddBoard() {
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      className="add-board h-screen w-full flex fixed top-0 left-0 justify-center items-center backdrop-blur-sm "
+      className="add-board h-screen w-full flex absolute top-0 left-0 justify-center items-center backdrop-blur-sm"
     >
     <AddBoardModal />
     </motion.div>

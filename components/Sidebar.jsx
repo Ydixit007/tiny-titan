@@ -15,7 +15,16 @@ export default function Sidebar({}) {
 
   useEffect(() => {
     getData();
+    checkDevice();
   }, [path]);
+
+  const checkDevice = () =>{
+    if(window.innerWidth < 768){
+      setsidebarOpen(false)
+    }else{
+      setsidebarOpen(true);
+    }
+  }
 
   const getData = () => {
     const data = appServices().readDataFromLocal() || [];
@@ -44,7 +53,7 @@ export default function Sidebar({}) {
         initial={{ width: "48px", opacity: 0 }}
         animate={{ width: sidebarOpen ? "256px" : "48px", opacity: 1 }}
         transition={{ duration: 0.2 }}
-        className="h-[90%] bg-primaryDark rounded-2xl m-6 p-3 flex-shrink-0 z-50"
+        className="h-[92%] bg-primaryDark rounded-2xl mx-6 max-md:mx-3 p-3 flex-shrink-0 z-50"
       >
         {sidebarOpen && (
           <motion.div
