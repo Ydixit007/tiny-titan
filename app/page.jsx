@@ -10,7 +10,7 @@ export default function Home() {
       transition={{ delay: 0.1 }}
       className="w-full h-[92.5%] flex flex-col justify-start items-start ml-1 px-8 max-md:ml-0 max-md:p-2"
     >
-      <div className="cards-container w-full h-full bg-color1 overflow-hidden flex flex-col justify-start items-start">
+      <div className="cards-container w-full h-full overflow-hidden flex flex-col justify-start items-start">
         <div className="heading mt-8">
           <h1 className="text-lighterGrey text-2xl font-semibold">
             Tiny-Titan
