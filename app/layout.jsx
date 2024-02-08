@@ -1,8 +1,5 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Tiny-titan : Empowers you to achieve big things with small steps.",
@@ -14,9 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={
-          inter.className && "bg-primary flex items-center text-lighterGrey"
-        }
+        className={`bg-primary flex items-center text-lighterGrey`}
       >
         <Sidebar />
         {children}

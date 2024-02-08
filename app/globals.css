@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 :root {
   --color1: #0A84FF;
@@ -14,6 +16,11 @@
 body {
   height: 100svh;
   overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
 }
 
 main {
@@ -172,9 +179,12 @@ main {
 }
 
 @keyframes translateYUpDown {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(45deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(20deg);
   }
