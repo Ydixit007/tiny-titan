@@ -20,7 +20,7 @@ export default function page({ params }) {
 
   if (path.startsWith("/addBoard")) {
     return (
-      <main className="relative">
+      <main className="relative w-full h-full">
         <AddBoard />
       </main>
     );
@@ -104,11 +104,11 @@ export default function page({ params }) {
         transition={{ delay: 0.1 }}
         className="w-full h-[92.5%] flex justify-start items-start flex-col px-8 mr-8 max-md:mr-0 max-md:px-2"
       >
-        <div className="heading mt-8">
+        <div className="heading flex flex-col gap-2">
           <h1 className="text-lighterGrey text-2xl font-semibold">
             Tiny-Titan
           </h1>
-          <p className="text-grey2 text-lg">
+          <p className="text-grey2 text-md">
             Empowers you to achieve big things with small steps.
           </p>
         </div>
